@@ -1,0 +1,37 @@
+import org.openqa.selenium.By
+import org.openqa.selenium.WebElement
+import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeOptions
+
+def driverPath = ""
+
+driverPath = /\/home\/user\/driver\/chromedriver/
+System.setProperty("webdriver.chrome.driver", driverPath);
+ChromeOptions options = new ChromeOptions();
+options.addArguments("--headless");
+
+
+ChromeDriver driver = new ChromeDriver(options);
+
+def page = "http://google.com"
+
+        driver.get(page)
+
+        println "Title of the page is -> " + driver.getTitle()
+
+        // find the search edit box on the google page
+        WebElement searchBox = driver.findElement(By.name("q"))
+
+        // type in Selenium
+        searchBox.sendKeys("Softhints");
+
+        // find the search button
+        WebElement button = driver.findElement(By.name("btnK"))
+
+        // Click the button
+       button.click();
+
+       println "Title of the page is -> " + driver.getTitle()
+
+driver.close();
+driver.quit();
